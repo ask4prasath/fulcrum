@@ -41,4 +41,8 @@ class User < ActiveRecord::Base
   def as_json(options = {})
     super(:only => JSON_ATTRIBUTES)
   end
+
+  def update_activity(actor, project)
+    Activity.create(:actor_id => actor.id, :user_id => self.id, :project_id => project.id, :kind => "user")
+  end
 end

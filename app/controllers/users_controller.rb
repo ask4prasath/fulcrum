@@ -29,6 +29,7 @@ class UsersController < ApplicationController
     else
       @project.users << @user
       if @user.was_created
+        @user.update_activity(current_user, @project)
         flash[:notice] = "#{@user.email} was sent an invite to join this project"
       else
         flash[:notice] = "#{@user.email} was added to this project"
