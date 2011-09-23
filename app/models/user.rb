@@ -16,6 +16,7 @@ class User < ActiveRecord::Base
   attr_accessor :was_created
 
   has_and_belongs_to_many :projects, :uniq => true
+  has_many :activities,    :dependent => :nullify
 
   before_validation :set_random_password_if_blank, :set_reset_password_token
 
@@ -44,5 +45,9 @@ class User < ActiveRecord::Base
 
   def update_activity(actor, project)
     Activity.create(:actor_id => actor.id, :user_id => self.id, :project_id => project.id, :kind => "user")
+  end
+
+  def feeds
+    (self.activities + self.projects.collect {|pro| pro.activities}.flatten).uniq
   end
 end

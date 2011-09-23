@@ -20,6 +20,7 @@ class StoriesController < ApplicationController
     @story.acting_user = current_user
     respond_to do |format|
       if @story.update_attributes(filter_story_params)
+        @story.update_activity(current_user)
         format.html { redirect_to project_url(@project) }
         format.js   { render :json => @story }
       else

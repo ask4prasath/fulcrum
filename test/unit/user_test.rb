@@ -33,7 +33,18 @@ class UserTest < ActiveSupport::TestCase
 
   test "should return json" do
     attrs = ["id", "name", "initials", "email"]
-
     assert_equal(attrs.count, @user.as_json['user'].keys.count)
+  end
+
+  test "should update activity" do
+    @actor = Factory.build(:user)
+    @actor.email = "q@w.com"
+    @actor.save
+    @project = Factory.create(:project)
+    assert_equal @user.update_activity(@actor, @project).class, Activity
+  end
+
+  test "should update activity2" do
+    assert_equal @user.feeds, []
   end
 end

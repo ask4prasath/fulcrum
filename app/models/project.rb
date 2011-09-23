@@ -32,6 +32,7 @@ class Project < ActiveRecord::Base
 
   has_many :stories,    :dependent => :destroy
   has_many :changesets, :dependent => :destroy
+  has_many :activities,    :dependent => :nullify
 
   def to_s
     name

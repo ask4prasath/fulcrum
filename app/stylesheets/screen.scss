@@ -408,3 +408,14 @@ a.button:hover {
 }
 
 
+/* LIST #8 */
+#list8 {  }
+#list8 ul { list-style:none; padding-left: 0}
+#list8 ul li { font-family:Georgia,serif,Times; font-size:18px; }
+#list8 ul li a { padding-top:10px ;display:block; height:28px; background-color:#FFEFC6; border:1px dotted #222; padding-left:10px;
+  text-decoration:none; color:#735005; }
+#list8 ul li a:hover {  -moz-transform:rotate(-3deg); -moz-box-shadow:10px 10px 20px #000000;
+  -webkit-transform:rotate(-3deg); -webkit-box-shadow:10px 10px 20px #000000;
+  transform:rotate(-3deg); box-shadow:10px 10px 20px #000000; }
+
+

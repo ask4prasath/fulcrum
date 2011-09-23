@@ -127,6 +127,10 @@ class Story < ActiveRecord::Base
     end
   end
 
+  def update_activity(actor)
+    Activity.create(:actor_id => actor.id, :story_id => self.id, :project_id => self.project.id, :kind => "story")        
+  end
+
   private
     
     def set_accepted_at

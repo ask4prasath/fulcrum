@@ -1,8 +1,7 @@
 <% content_for :title_bar do %>
   <h1>Listing projects</h1>
 <% end %>
-
-<ul id="projects">
+<ul id="projects" style="float:left">
   <% @projects.each do |project| %>
     <li>
       <div class="project_options">
@@ -21,4 +20,20 @@
   <% end %>
 </ul>
 
+<div class="aa" style="float:right; width: 40%; padding-right: 50px">
+  Activity Feeds <br />
+
+  <% current_user.feeds.each do |feed| %>
+        <div id="list8">
+         <ul>
+           <li><a href="#"><%= feed.user.nil? ? "#{feed.actor.name} edited the #{feed.story.title} from the project #{feed.project.name}" : "#{feed.actor.name} added #{feed.user.name} to the project #{feed.project.name}"  %></a></li>
+           <h5>on <%= feed.created_at %></h2>
+         </ul>
+        </div>
+  <% end %>
+
+</div>
+
+<div style="width: 30%;" >
 <%= link_to 'New Project', new_project_path, :class => :button %>
+</div>
